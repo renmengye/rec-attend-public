@@ -495,7 +495,6 @@ class FGModelArgsParser(CmdArgsParser):
         'add_orientation': args.add_orientation,
         'num_orientation_classes': args.num_orientation_classes,
         'num_semantic_classes': args.num_semantic_classes,
-        'use_res_net': args.use_res_net,
         'optimizer': args.optimizer
     }
     return model_opt
