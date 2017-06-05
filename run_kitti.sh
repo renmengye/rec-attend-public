@@ -2,8 +2,6 @@ MODEL_ID=$(./assign_model_id.py)
 DATASET=kitti
 FG_MODEL_ID="fg_model_"$DATASET"-"$MODEL_ID
 FG_OUTPUT=results/$FG_MODEL_ID/output
-PATCH_MODEL_ID="patch_model_"$DATASET"-"$MODEL_ID
-PATCH_WEIGHTS=results/$PATCH_MODEL_ID/weights.h5
 BOX_MODEL_ID="box_model_"$DATASET"-"$MODEL_ID
 BOX_WEIGHTS=results/$BOX_MODEL_ID/weights.h5
 FULL_MODEL_ID="full_model_"$DATASET"-"$MODEL_ID
@@ -31,13 +29,13 @@ FG_OUTPUT_THRESH=results/$FG_MODEL_ID/output/$THRESHOLD_STR
 --model_id $FG_MODEL_ID
 
 # Pack FCN output prediction.
-./fg_pack.py \
+./fg_model_pack.py \
 --model_id $FG_MODEL_ID \
 --dataset $DATASET \
 --split 'train,valid,test'
 
 # Render foreground output, used for masking.
-./fg_eval.py \
+./fg_model_eval.py \
 --model_id $FG_MODEL_ID \
 --dataset $DATASET \
 --split 'valid,test' \

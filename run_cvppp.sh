@@ -2,8 +2,6 @@
 MODEL_ID=$(./assign_model_id.py)
 DATASET=cvppp
 SAVE_FOLDER=results
-PATCH_MODEL_ID="patch_model_"$DATASET"-"$MODEL_ID
-PATCH_WEIGHTS=$SAVE_FOLDER/$PATCH_MODEL_ID/weights.h5
 BOX_MODEL_ID="box_model_"$DATASET"-"$MODEL_ID
 BOX_WEIGHTS=$SAVE_FOLDER/$BOX_MODEL_ID/weights.h5
 FULL_MODEL_ID="full_model_"$DATASET"-"$MODEL_ID
@@ -12,35 +10,6 @@ THRESHOLD=30
 
 mkdir -p logs
 mkdir -p results
-
-# Pretrain local window segmentation network weights.
-./patch_model_train.py \
---dataset $DATASET \
---attn_box_padding_ratio 0.2 \
---gt_box_ctr_noise 0.05 \
---gt_box_pad_noise 0.1 \
---gt_segm_noise 0.3 \
---attn_cnn_filter_size 3,3,3,3,3,3 \
---attn_cnn_depth 8,8,16,16,32,32 \
---attn_cnn_pool 1,2,1,2,1,2 \
---attn_dcnn_filter_size 3,3,3,3,3,3,3 \
---attn_dcnn_depth 32,32,16,16,8,8,1 \
---attn_dcnn_pool 2,1,2,1,2,1,1 \
---num_attn_mlp_layers 1 \
---filter_height 48 \
---filter_width 48 \
---segm_loss_fn iou \
---save_ckpt \
---base_learn_rate 0.001 \
---batch_size 5 \
---num_steps 2000 \
---attn_cnn_skip 1,0,1,0,1,0 \
---model_id $PATCH_MODEL_ID
-
-# Read pretrained weights.
-./patch_model_read.py \
---model_id $PATCH_MODEL_ID \
---output $PATCH_WEIGHTS
 
 # Pretrain attention box controller weights.
 ./box_model_train.py \
@@ -56,9 +25,7 @@ mkdir -p results
 --learn_rate_decay 0.9 \
 --steps_per_learn_rate_decay 5000 \
 --num_steps 60000 \
---pretrain_cnn $PATCH_WEIGHTS \
 --model_id $BOX_MODEL_ID
-
 
 # Read pretrained weights.
 ./box_model_read.py \
