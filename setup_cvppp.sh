@@ -1,3 +1,8 @@
+# Set up cityscapes experiments.
+# Author: Mengye Ren (mren@cs.toronto.edu)
+
+#########################################################
+# Set up folder paths.
 # Change lines below.
 # Path to CVPPP dataset.
 CVPPP_DATA=/ais/gobi4/mren/data/lsc
@@ -6,6 +11,7 @@ CVPPP_TEST_DATA=/ais/gobi4/mren/data/lsc_test
 SAVE_FOLDER=/ais/gobi5/mren/results/rec-attend
 # Path to log storage.
 DASHBOARD_LOGS=/u/mren/public_html/results
+#########################################################
 
 mkdir -p data
 

@@ -1,3 +1,8 @@
+# Set up cityscapes experiments.
+# Author: Mengye Ren (mren@cs.toronto.edu)
+
+#########################################################
+# Set up folder paths.
 # Change lines below.
 # Path to KITTI dataset.
 KITTI_DATA=/ais/gobi4//mren/data/kitti/object
@@ -5,6 +10,7 @@ KITTI_DATA=/ais/gobi4//mren/data/kitti/object
 SAVE_FOLDER=/ais/gobi5/mren/results/rec-attend
 # Path to log storage.
 DASHBOARD_LOGS=/u/mren/public_html/results
+#########################################################
 
 mkdir -p data
 

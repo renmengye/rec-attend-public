@@ -40,7 +40,25 @@ Run training experiments:
 ```
 
 ## Cityscapes Experiments
-To be released soon.
+First modify `setup_cityscapes.sh` with your dataset folder paths.
+```bash
+./setup_cityscapes.sh
+```
+
+Run training experiments:
+```bash
+./run_cityscapes.sh
+```
+
+Run evaluation:
+```bash
+# Run the validation set, and evaluate with cityscapes evaluation script.
+./run_cityscapes_eval.sh valid [MODEL_ID]
+
+# Run the test set and output the result.
+./run_cityscapes_eval.sh test [MODEL_ID]
+```
+
 
 ## Citation
 If you use our code, please consider cite the following:

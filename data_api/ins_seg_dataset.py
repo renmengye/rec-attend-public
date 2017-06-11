@@ -138,12 +138,7 @@ class InsSegDataset(object):
             results['d_out'] = np.zeros(
                 [num_ex, height, width, num_ori_classes], dtype='float32')
           if 's_out' in variables:
-            if nc > 1:
-              results['s_out'] = np.zeros(
-                  [num_ex, timespan, nc], dtype='float32')
-            else:
-              results['s_out'] = np.zeros(
-                  [num_ex, timespan, 1], dtype='float32')
+            results['s_out'] = np.zeros([num_ex, timespan], dtype='float32')
           if 's_gt' in variables:
             results['s_gt'] = np.zeros([num_ex, timespan], dtype='float32')
           if 'orig_size' in variables:
@@ -298,12 +293,7 @@ class InsSegDataset(object):
 
         if 's_out' in variables:
           _s = data_group['score_pred'][:]
-          if len(_s.shape) == 2:
-            results['s_out'][kk] = _s
-          elif len(_s.shape) == 1:
-            results['s_out'][kk, :, 0] = _s
-          else:
-            raise Exception('Unrecognized shape {}'.format(_s.shape))
+          results['s_out'][kk] = _s
 
         # For combined datasets, the source of the data example.
         if 'source' in data_group:
