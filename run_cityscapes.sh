@@ -1,16 +1,9 @@
 MODEL_ID=$(./assign_model_id.py)
 DATASET=cityscapes
 FG_MODEL_ID="fg_model_"$DATASET"-"$MODEL_ID
-FG_OUTPUT=results/$FG_MODEL_ID/output
-PATCH_MODEL_ID="patch_model_"$DATASET"-"$MODEL_ID
-PATCH_WEIGHTS=results/$PATCH_MODEL_ID/weights.h5
 BOX_MODEL_ID="box_model_"$DATASET"-"$MODEL_ID
 BOX_WEIGHTS=results/$BOX_MODEL_ID/weights.h5
 FULL_MODEL_ID="full_model_"$DATASET"-"$MODEL_ID
-FULL_WEIGHTS=results/$FULL_MODEL_ID/weights.h5
-THRESHOLD_STR='30'
-THRESHOLD='0.3'
-FG_OUTPUT_THRESH=results/$FG_MODEL_ID/output/$THRESHOLD_STR
 
 # Train FCN preprocessing network.
 ./fg_model_train.py \

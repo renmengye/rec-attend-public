@@ -24,12 +24,12 @@ export CITYSCAPES_SPLIT=$CSPLIT
 
 if [[ $CSPLIT ]]; then
   # Pack the network outputs into the HDF5 file.
-  #./full_model_pack.py \
-  #  --dataset cityscapes \
-  #  --split "$SPLIT" \
-  #  --model_id "$MODEL_ID" \
-  #  --results "$RESULTS_FOLDER" \
-  #  --batch_size 4
+  ./full_model_pack.py \
+    --dataset cityscapes \
+    --split "$SPLIT" \
+    --model_id "$MODEL_ID" \
+    --results "$RESULTS_FOLDER" \
+    --batch_size 4
 
   if [[ $? -eq 0 ]]; then
     # Run evaluation script, upsample the output to original size.
@@ -48,9 +48,7 @@ if [[ $CSPLIT ]]; then
     if [[ $? -eq 0 ]]; then
       if [[ $RUN_EVAL = true ]]; then
         # Run Cityscapes dataset provided evaluation.
-        cd data_api/cityscapes_scripts/evaluation
-        python evalInstanceLevelSemanticLabeling.py
-        cd ../../../
+        python data_api/cityscapes_scripts/evaluation/evalInstanceLevelSemanticLabeling.py
       fi
     fi
   fi

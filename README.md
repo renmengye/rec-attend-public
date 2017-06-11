@@ -10,6 +10,7 @@ Code that implements paper "End-to-End Instance Segmentation with Recurrent Atte
 * PyYaml
 * hdf5 and H5Py
 * tqdm
+* Pillow (required by cityscapes evaluation)
 
 ## Installation
 Compile Hungarian matching module
