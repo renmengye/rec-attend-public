@@ -113,7 +113,11 @@ FG_OUTPUT_THRESH=results/$FG_MODEL_ID/output/$THRESHOLD_STR
 --num_semantic_classes 9 \
 --stop_canvas_grad \
 --base_learn_rate 0.001 \
---num_steps 70000
+--num_steps 70000 \
+--model_id $FULL_MODEL_ID
 
-# Run full network evaluation.
-source cityscapes_eval.sh
+# Run evaluation on validation set.
+./run_cityscapes_eval.sh "valid" "$FULL_MODEL_ID"
+
+# Run evaluation on test set.
+./run_cityscapes_eval.sh "test" "$FULL_MODEL_ID"
