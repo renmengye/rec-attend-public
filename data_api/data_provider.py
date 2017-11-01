@@ -1,7 +1,7 @@
 import os
 from kitti import KITTI
 from cvppp import CVPPP
-from mscoco_ins import MSCOCOIns
+#from mscoco_ins import MSCOCOIns
 from cityscapes import Cityscapes
 
 kDefaultCvpppTrainFolder = 'data/cvppp/A1'
