@@ -75,7 +75,7 @@ class CVPPPAssembler(InsSegAssembler):
         image_id_dict[imgid] = True
 
     image_ids = np.array(image_id_dict.keys())
-    num_train = np.ceil(image_ids.size * 0.8)  # 103 for 128
+    num_train = int(np.ceil(image_ids.size * 0.8))  # 103 for 128
     idx = np.arange(len(image_ids))
     random.shuffle(idx)
     train_ids = image_ids[idx[:num_train]]
