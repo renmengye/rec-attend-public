@@ -166,7 +166,7 @@ class CityscapesEvalRunner(OneTimeEvalBase):
       fg = inp['fg_in'][0]  # [1, H, W, C]
       fg_h = np.zeros(
           [full_size[0], full_size[1], fg.shape[2]], dtype='float32')
-      for cc in xrange(fg_h.shape[2]):
+      for cc in range(fg_h.shape[2]):
         fg_h[:, :, cc] = cv2.resize(fg[:, :, cc], (full_size[1], full_size[0]))
 
       FG_THRESHOLD = 0.3
@@ -226,7 +226,7 @@ class CityscapesEvalRunner(OneTimeEvalBase):
                                                                 idx)
     fgraw = scipy.io.loadmat(matfn)['semanticPrediction']
     fg = np.zeros(list(fgraw.shape) + [9], dtype='float32')
-    for ii in xrange(8):
+    for ii in range(8):
       fg[:, :, ii + 1] = (fgraw == sem_ids[ii]).astype('float32')
     fg[:, :, 0] = 1 - fg.max(axis=-1)
     return fg

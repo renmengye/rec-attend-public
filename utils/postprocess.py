@@ -40,11 +40,11 @@ def apply_one_label(y_out):
   num_ex = len(y_out)
   timespan = y_out[0].shape[0]
   y_out_proc = []
-  for ii in xrange(num_ex):
+  for ii in range(num_ex):
     _y = y_out[ii]
     y_out_max = np.argmax(_y, axis=0)
     _y2 = np.zeros(_y.shape)
-    for jj in xrange(timespan):
+    for jj in range(timespan):
       _y2[jj] = (y_out_max == jj).astype('float32') * _y[jj]
       pass
     y_out_proc.append(_y2)
@@ -67,7 +67,7 @@ def morph_single(y_out):
   """
   y_out_morph = np.zeros(y_out.shape)
   kernel = np.ones([5, 5])
-  for ch in xrange(y_out.shape[0]):
+  for ch in range(y_out.shape[0]):
     y_out_morph[ch] = cv2.dilate(y_out[ch], kernel)
   return y_out_morph
 
@@ -83,10 +83,10 @@ def upsample(y_out, y_gt):
   y_out_resize = []
   num_ex = len(y_gt)
   timespan = y_gt[0].shape[0]
-  for ii in xrange(num_ex):
+  for ii in range(num_ex):
     size = (y_gt[ii].shape[-1], y_gt[ii].shape[-2])
     _y = np.zeros(y_gt[ii].shape, dtype='float32')
-    for jj in xrange(timespan):
+    for jj in range(timespan):
       _y[jj] = upsample_single(y_out[ii][jj], size)
     y_out_resize.append(_y)
   return y_out_resize

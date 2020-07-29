@@ -54,7 +54,7 @@ class InsSegDataset(object):
           y_gt_group = data_group['label_segmentation_full_size']
           num_obj = len(y_gt_group.keys())
           y_full_kk = None
-          for jj in xrange(min(num_obj, timespan)):
+          for jj in range(min(num_obj, timespan)):
             y_full_jj_str = y_gt_group['{:02d}'.format(jj)][:]
             y_full_jj = cv2.imdecode(
                 y_full_jj_str, cv2.CV_LOAD_IMAGE_GRAYSCALE).astype('float32')

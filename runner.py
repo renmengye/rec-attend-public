@@ -69,7 +69,7 @@ class RunnerBase(EmptyRunner):
     results['_batches'] = []
 
     # Run each batch.
-    for bb in xrange(self.num_batch):
+    for bb in range(self.num_batch):
       try:
         inp = self.batch_iter.next()
       except StopIteration:

@@ -96,7 +96,7 @@ class FGEvalRunner(OneTimeEvalBase):
     """
     y_out_resize = []
     num_ex = y_out.shape[0]
-    for ii in xrange(num_ex):
+    for ii in range(num_ex):
       _sz = size_list[ii]
       _y = self.upsample_single(y_out[ii], (_sz[1], _sz[0]))
       y_out_resize.append(_y)
@@ -127,7 +127,7 @@ class FGEvalRunner(OneTimeEvalBase):
 
   def upsample_d_out(self, d_out, size):
     d_out_h = np.zeros([size[0], size[1], d_out.shape[-1]])
-    for ch in xrange(d_out.shape[-1]):
+    for ch in range(d_out.shape[-1]):
       d_out_h[:, :, ch] = cv2.resize(d_out[:, :, ch], (size[1], size[0]))
     return d_out_h
 
@@ -154,7 +154,7 @@ class FGEvalRunner(OneTimeEvalBase):
     if self.ori_render is not None:
       d_out = results['d_out']
       d_out_h = [
-          self.upsample_d_out(d_out[ii], size_list[ii]) for ii in xrange(num_ex)
+          self.upsample_d_out(d_out[ii], size_list[ii]) for ii in range(num_ex)
       ]
       results_dout = {
           'd_out': d_out_h,

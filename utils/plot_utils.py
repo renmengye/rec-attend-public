@@ -30,8 +30,8 @@ def calc_row_col(num_ex, num_items, max_items_per_row=9):
 
 
 def set_axis_off(axarr, num_row, num_col):
-  for row in xrange(num_row):
-    for col in xrange(num_col):
+  for row in range(num_row):
+    for col in range(num_col):
       if num_col > 1 and num_row > 1:
         ax = axarr[row, col]
       elif num_col > 1:
@@ -68,8 +68,8 @@ def plot_thumbnails(fname,
   f1, axarr = plt.subplots(num_row, num_col, figsize=(width, height))
   set_axis_off(axarr, num_row, num_col)
 
-  for ii in xrange(num_ex):
-    for jj in xrange(num_items):
+  for ii in range(num_ex):
+    for jj in range(num_items):
       row, col = calc(ii, jj)
       if axis == 3:
         x = img[ii, :, :, jj]
@@ -113,11 +113,11 @@ def plot_input(fname, x, y_gt, s_gt, max_items_per_row=9):
   set_axis_off(axarr, num_row, num_col)
   cmap = ['r', 'y', 'c', 'g', 'm']
 
-  for ii in xrange(num_ex):
+  for ii in range(num_ex):
     _x = x[ii]
     _x = _x[:, :, [2, 1, 0]]
     # _x = x[ii, :, :, [2, 1, 0]]
-    for jj in xrange(num_items):
+    for jj in range(num_items):
       row, col = calc(ii, jj)
       axarr[row, col].imshow(_x)
       nz = y_gt[ii, jj].nonzero()
@@ -182,8 +182,8 @@ def plot_output(fname,
 
   set_axis_off(axarr, num_row, num_col)
 
-  for ii in xrange(num_ex):
-    for jj in xrange(num_items):
+  for ii in range(num_ex):
+    for jj in range(num_items):
       if len(y_out.shape) == 5 and y_out.shape[4] == 3:
         _x = y_out[ii, jj]
         _x = _x[:, :, [2, 1, 0]]
@@ -243,9 +243,9 @@ def plot_total_instances(fname, y_out, s_out, max_items_per_row=9):
        [250, 121, 33]],
       dtype='uint8')
 
-  for ii in xrange(num_ex):
+  for ii in range(num_ex):
     total_img = np.zeros([y_out.shape[2], y_out.shape[3], 3])
-    for jj in xrange(num_items):
+    for jj in range(num_items):
       row, col = calc(ii, jj)
       if s_out[ii, jj] > 0.5:
         total_img += np.expand_dims(
@@ -280,11 +280,11 @@ def plot_double_attention(fname, x, glimpse_map, max_items_per_row=9):
   f1, axarr = plt.subplots(num_row, num_col, figsize=(10, num_row))
   set_axis_off(axarr, num_row, num_col)
 
-  for ii in xrange(num_ex):
+  for ii in range(num_ex):
     _x = x[ii]
     _x = _x[:, :, [2, 1, 0]]
-    for tt in xrange(timespan):
-      for jj in xrange(num_glimpse):
+    for tt in range(timespan):
+      for jj in range(num_glimpse):
         row, col = calc(ii * timespan + tt, jj)
         total_img = np.zeros([im_height, im_width, 3])
         total_img += _x * 0.5

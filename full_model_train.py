@@ -6,6 +6,10 @@ import numpy as np
 import os
 import tensorflow as tf
 
+import os
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
+
 from utils import logger
 from utils import plot_utils as pu
 from utils import BatchIterator, ConcurrentBatchIterator

@@ -25,7 +25,7 @@ class InsSegAssembler(object):
     shuffle = np.arange(len(self.img_ids))
     random.shuffle(shuffle)
     self.img_ids = [
-        self.img_ids[shuffle[idx]] for idx in xrange(len(self.img_ids))
+        self.img_ids[shuffle[idx]] for idx in range(len(self.img_ids))
     ]
 
   def read_ids(self):

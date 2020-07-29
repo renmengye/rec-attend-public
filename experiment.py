@@ -246,17 +246,26 @@ class TrainingExperimentBase(ExperimentBase):
       # Run validation stats
       if self.opt['has_valid']:
         if self.step.get() % self.opt['steps_per_valid'] == 0:
+          print("\n# ------------------------------------------------------ #\n",
+                self.step.get(), self.opt['steps_per_valid'], self.step.get() % self.opt['steps_per_valid'] == 0,
+                "\n# ------------------------------------------------------ #\n")
           self.log.info('Running validation')
           runner_valid.run_step()
 
       # Train stats
       if self.step.get() % self.opt['steps_per_trainval'] == 0:
+        print("\n# ------------------------------------------------------ #\n",
+              self.step.get(), self.opt['steps_per_trainval'], self.step.get() % self.opt['steps_per_trainval'] == 0,
+              "\n# ------------------------------------------------------ #\n")
         self.log.info('Running train validation')
         runner_trainval.run_step()
 
       # Save model
       if self.step.get() % self.opt['steps_per_ckpt'] == 0:
         if self.opt['save_ckpt']:
+          print("\n# ------------------------------------------------------ #\n",
+                self.step.get(), self.opt['steps_per_ckpt'], self.step.get() % self.opt['steps_per_ckpt'] == 0,
+                "\n# ------------------------------------------------------ #\n")
           self.log.info('Saving checkpoint')
           self.saver.save(self.sess, global_step=self.step.get())
         else:

@@ -13,6 +13,10 @@ from utils.lazy_registerer import LazyRegisterer
 from utils.step_counter import StepCounter
 from utils.time_series_logger import TimeSeriesLogger
 
+import os
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
+
 from cmd_args_parser import TrainArgsParser, DataArgsParser, CmdArgsParser
 from experiment import TrainingExperimentBase
 from runner import RunnerBase
@@ -263,12 +267,12 @@ class Plotter(Runner):
             match=results['match_box'],
             attn=(results['attn_top_left'], results['attn_bot_right']),
             max_items_per_row=max_items)
-      if 'attn' in self.loggers:
-        pu.plot_double_attention(
-            self.loggers['attn'].get_fname(),
-            x,
-            results['ctrl_rnn_glimpse_map'],
-            max_items_per_row=max_items)
+      # if 'attn' in self.loggers:
+      #   pu.plot_double_attention(
+      #       self.loggers['attn'].get_fname(),
+      #       x,
+      #       results['ctrl_rnn_glimpse_map'],
+      #       max_items_per_row=max_items)
     self.check_register()
     self.batch_iter.reset()
 

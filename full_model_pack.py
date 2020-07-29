@@ -41,13 +41,13 @@ class PackRunner(OneTimeEvalBase):
     y_out = results['y_out']
     s_out = results['s_out']
     with h5py.File(self.dataset.h5_fname, 'r+') as h5f:
-      print inp['idx_map']
-      for ii in xrange(y_out.shape[0]):
+      print(inp['idx_map'])
+      for ii in range(y_out.shape[0]):
         idx = inp['idx_map'][ii]
         group = h5f[self.dataset.get_str_id(idx)]
         if 'instance_pred' in group:
           del group['instance_pred']
-        for ins in xrange(y_out.shape[1]):
+        for ins in range(y_out.shape[1]):
           y_out_arr = y_out[ii, ins]
           y_out_arr = (y_out_arr * 255).astype('uint8')
           y_out_str = cv2.imencode('.png', y_out_arr)[1]

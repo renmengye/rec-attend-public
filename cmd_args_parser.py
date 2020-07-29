@@ -20,7 +20,10 @@ class CmdArgsParser(object):
     kSynthShapeInpWidth = 224
     kCvpppInpHeight = 224
     kCvpppInpWidth = 224
-    kCvpppNumObj = 20
+
+    # kCvpppNumObj = 20
+    kCvpppNumObj = 80
+
     kKittiInpHeight = 128
     kKittiInpWidth = 448
     kKittiNumObj = 19
@@ -94,9 +97,16 @@ class TrainArgsParser(CmdArgsParser):
     self.parser.add_argument('--model_id', default=None)
     self.parser.add_argument('--num_steps', default=500000, type=int)
     self.parser.add_argument('--steps_per_ckpt', default=1000, type=int)
-    self.parser.add_argument('--steps_per_valid', default=50, type=int)
-    self.parser.add_argument('--steps_per_trainval', default=50, type=int)
-    self.parser.add_argument('--steps_per_plot', default=500, type=int)
+
+    # self.parser.add_argument('--steps_per_valid', default=50, type=int)
+    self.parser.add_argument('--steps_per_valid', default=10000, type=int)
+
+    # self.parser.add_argument('--steps_per_trainval', default=50, type=int)
+    self.parser.add_argument('--steps_per_trainval', default=10000, type=int)
+
+    # self.parser.add_argument('--steps_per_plot', default=500, type=int)
+    self.parser.add_argument('--steps_per_plot', default=9999999999, type=int)
+
     self.parser.add_argument('--steps_per_log', default=10, type=int)
     self.parser.add_argument('--batch_size', default=32, type=int)
     self.parser.add_argument('--results', default='results')
@@ -106,7 +116,10 @@ class TrainArgsParser(CmdArgsParser):
     self.parser.add_argument('--num_samples_plot', default=5, type=int)
     self.parser.add_argument('--save_ckpt', action='store_true')
     self.parser.add_argument('--no_valid', action='store_true')
-    self.parser.add_argument('--num_batch_valid', default=10, type=int)
+
+    # self.parser.add_argument('--num_batch_valid', default=10, type=int)
+    self.parser.add_argument('--num_batch_valid', default=1, type=int)
+
     self.parser.add_argument('--h5_fname_train', default=None)
     self.parser.add_argument('--h5_fname_valid', default=None)
     self.parser.add_argument('--prefetch', action='store_true')

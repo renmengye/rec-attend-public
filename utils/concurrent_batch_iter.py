@@ -89,7 +89,7 @@ class ConcurrentBatchIterator(IBatchIterator):
     return len(self.batch_iter)
 
   def init_fetchers(self):
-    for ii in xrange(self.num_threads):
+    for ii in range(self.num_threads):
       f = BatchProducer(self.q, self.batch_iter)
       f.start()
       self.fetchers.append(f)

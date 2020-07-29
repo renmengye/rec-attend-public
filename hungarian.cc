@@ -17,7 +17,7 @@
 #include "tensorflow/core/platform/logging.h"
 #define EPSILON 1e-6
 #define ABS(x) (((x) > 0) ? (x) : -(x))
-#define MAX_NUM_ITERATION 1000
+#define MAX_NUM_ITERATION 20000
 
 using namespace tensorflow;
 

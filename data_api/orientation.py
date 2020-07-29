@@ -20,7 +20,7 @@ def build_orientation_img(d, mask):
     cw = color_wheel
     did = np.argmax(d, -1)
     new_shape = []
-    for ss in xrange(len(y.shape) - 1):
+    for ss in range(len(y.shape) - 1):
         new_shape.append(y.shape[ss])
     new_shape.append(3)
     c2 = cw[did.reshape([-1])].reshape(new_shape)

@@ -18,6 +18,49 @@ Compile Hungarian matching module
 ./hungarian_build.sh
 ```
 
+## CREMI Experiments
+**Note**: Unlock h5_lock:  
+`export HDF5_USE_FILE_LOCKING='FALSE'`
+
+### Crop data:  
+Run `cremi_Prepare_Eval.ipynb`
+### Setup data:
+**Configure** the size `opt` in `setup_cvppp.py`.  
+**Note**: `setup_cvppp.py` will automatically resize to the size `opt` in `setup_cvppp.py`.    
+**Run** `setup_cvppp.py`  
+
+
+###Run experiments:
++ **Configure** the setting:  
+    + Class `TrainArgsParser` in `cmd_args_parser.py` 
+    + Number of object `kCvpppNumObj` in `cmd_args_parser.py` 
+    + `steps_per_valid` in `cmd_args_parser.py` 
+    + `steps_per_trainval` in `cmd_args_parser.py` 
+    + `steps_per_plot` in `cmd_args_parser.py` 
+    + `num_batch_valid` in `cmd_args_parser.py`
+    + `MAX_NUM_ITERATION` in `hungarian.cc` 
+    
++ **Choose GPU_id** in: 
+    + `box_model_train.py` 
+    + `box_model_read.py`
+    + `full_model_train.py`  
+    + `full_model_eval.py`  
+    
++ **Comment** those code in `box_model_train.py`
+    ```
+      # if 'attn' in self.loggers:
+      #   pu.plot_double_attention(
+      #       self.loggers['attn'].get_fname(),
+      #       x,
+      #       results['ctrl_rnn_glimpse_map'],
+      #       max_items_per_row=max_items)
+    ```
+**Run**
+```bash
+./run_cremi.sh
+```
+
+
 ## CVPPP Experiments
 First modify `setup_cvppp.sh` with your dataset folder paths.
 ```bash

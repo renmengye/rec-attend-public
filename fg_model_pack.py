@@ -31,7 +31,7 @@ class FGPackRunner(OneTimeEvalBase):
     y_out = results['y_out']
     d_out = results['d_out']
     with h5py.File(self.dataset.h5_fname, 'r+') as h5f:
-      for ii in xrange(y_out.shape[0]):
+      for ii in range(y_out.shape[0]):
         idx = inp['idx_map'][ii]
         group = h5f[self.dataset.get_str_id(idx)]
         if 'foreground_pred' in group:
